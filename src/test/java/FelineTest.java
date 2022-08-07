@@ -1,38 +1,41 @@
+
+import java.util.List;
+
 import com.example.Feline;
 import org.junit.Test;
-import java.util.List;
+import org.junit.Before;
 import static org.junit.Assert.assertEquals;
 
 public class FelineTest {
-    @Test
-    public void getFamilyTest() {
-        Feline feline = new Feline();
-        assertEquals("Метод должен возвращать строку Кошачьи", "Кошачьи", feline.getFamily());
+    private Feline feline;
+
+    @Before
+    public void createNewInstance() {
+        feline = new Feline();
     }
 
     @Test
-    public void eatMeatTest() throws Exception{
-        Feline feline = new Feline();
-        assertEquals("Для хищника должен возвращаться список - Животные, Птицы, Рыба", List.of("Животные", "Птицы", "Рыба"), feline.eatMeat());
+    public void eatMeat() throws Exception {
+        List<String> list = feline.eatMeat();
+        int actual = list.size();
+        int expected = 3;
+
+        assertEquals(expected, actual);
     }
 
     @Test
-    public void getKittensTest(){
-        Feline feline = new Feline();
-        assertEquals("Должен возвращаться один котенок", 1, feline.getKittens());
+    public void getFamily() {
+        String actual = feline.getFamily();
+        String expected = "Кошачьи";
+
+        assertEquals(expected, actual);
     }
 
     @Test
-    public void getKittensWithArgumentTest(){
-        Feline feline = new Feline();
-        assertEquals("Должно возвращаться три котенка", 3, feline.getKittens(3));
+    public void getKittens() {
+        int actual = feline.getKittens();
+        int expected = 1;
+
+        assertEquals(expected, actual);
     }
-
-    @Test
-    public void getFoodTest() throws Exception{
-        Feline feline = new Feline();
-        assertEquals("Для хищника должен возвращаться список - Животные, Птицы, Рыба", List.of("Животные", "Птицы", "Рыба"), feline.getFood());
-    }
-
-
 }
